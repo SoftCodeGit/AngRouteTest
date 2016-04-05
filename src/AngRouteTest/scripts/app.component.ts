@@ -2,8 +2,9 @@
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {CrisisListComponent} from './crisis-list.component';
-import {HeroListComponent} from './hero-list.component';
-import {HeroDetailComponent} from './hero-detail.component';
+import {HeroListComponent} from './heroes/hero-list.component';
+import {HeroDetailComponent} from './heroes/hero-detail.component';
+import {HeroService}           from './heroes/hero.service';
 
 @Component({
     selector: 'my-app',
@@ -15,6 +16,7 @@ import {HeroDetailComponent} from './hero-detail.component';
     </nav>
     <router-outlet></router-outlet>
     `,
+    providers: [HeroService],
     directives: [ROUTER_DIRECTIVES]
 })
 
