@@ -1,0 +1,1 @@
+{"version":3,"file":"hero-list.component.js","sourceRoot":"","sources":["../../scripts/hero-list.component.ts"],"names":["HeroListComponent","HeroListComponent.constructor"],"mappings":";;;;;;;;;;;;;;;;;;YAEA;gBAAAA;gBAOiCC,CAACA;gBAPlCD;oBAACA,gBAASA,CAACA;wBACPA,QAAQA,EAAEA,wCAETA;qBACJA,CAACA;;sCAGgCA;gBAADA,wBAACA;YAADA,CAACA,AAPlC,IAOkC;YAPlC,iDAOkC,CAAA"}
