@@ -2,7 +2,8 @@
 
 @Component({
     template: `
-    <h1>HeroListComponent</h1>
+    <h3>HeroListComponent</h3>
+    <p>Get your heroes here</p>
     `
 })
 

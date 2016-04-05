@@ -34,7 +34,7 @@ System.register(['angular2/core', 'angular2/router', './crisis-list.component', 
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h1>Component Router</h1>\n    <nav>\n    <a [routerLink]=\"['CrisisCenter']\" >Crisis Center</a>\n    <a [routerLink]=\"['Heroes']\" >Heroes</a>\n    </nav>\n    <router-outlet></router-outlet>\n    ",
+                        template: "\n    <h2>Component Router</h2>\n    <nav>\n    <a [routerLink]=\"['CrisisCenter']\" >Crisis Center</a>\n    <a [routerLink]=\"['Heroes']\" >Heroes</a>\n    </nav>\n    <router-outlet></router-outlet>\n    ",
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([

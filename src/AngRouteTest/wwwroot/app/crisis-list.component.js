@@ -21,7 +21,7 @@ System.register(['angular2/core'], function(exports_1) {
                 }
                 CrisisListComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h1>CrisisListComponent</h1>\n    "
+                        template: "\n    <h3>CrisisListComponent</h3>\n    <p>Get your crisis here</p>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], CrisisListComponent);

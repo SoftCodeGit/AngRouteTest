@@ -8,7 +8,7 @@ import {HeroDetailComponent} from './hero-detail.component';
 @Component({
     selector: 'my-app',
     template: `
-    <h1>Component Router</h1>
+    <h2>Component Router</h2>
     <nav>
     <a [routerLink]="['CrisisCenter']" >Crisis Center</a>
     <a [routerLink]="['Heroes']" >Heroes</a>

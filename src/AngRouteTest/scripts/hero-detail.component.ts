@@ -2,7 +2,7 @@
 
 @Component({
     template: `
-    <h1>HeroDetailComponent</h1>
+    <h3>HeroDetailComponent</h3>
     `
 })
 

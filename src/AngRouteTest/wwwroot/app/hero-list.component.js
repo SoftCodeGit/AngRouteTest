@@ -21,7 +21,7 @@ System.register(['angular2/core'], function(exports_1) {
                 }
                 HeroListComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h1>HeroListComponent</h1>\n    "
+                        template: "\n    <h3>HeroListComponent</h3>\n    <p>Get your heroes here</p>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HeroListComponent);
