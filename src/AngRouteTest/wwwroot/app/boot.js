@@ -1,3 +1,4 @@
+///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
 System.register(['angular2/platform/browser', './app.component', 'angular2/router'], function(exports_1) {
     var browser_1, app_component_1, router_1;
     return {
@@ -12,10 +13,6 @@ System.register(['angular2/platform/browser', './app.component', 'angular2/route
                 router_1 = router_1_1;
             }],
         execute: function() {
-            //import {ROUTER_PROVIDERS, APP_BASE_HREF} from 'angular2/router';
-            //bootstrap(AppComponent, [
-            //    ROUTER_PROVIDERS, bind(APP_BASE_HREF).toValue(location.pathname)
-            //]);
             browser_1.bootstrap(app_component_1.AppComponent, [
                 router_1.ROUTER_PROVIDERS
             ]);

@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './crisis.service', 'angular2/router'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,22 +8,37 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, crisis_service_1, router_1;
     var CrisisListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (crisis_service_1_1) {
+                crisis_service_1 = crisis_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             CrisisListComponent = (function () {
-                function CrisisListComponent() {
+                function CrisisListComponent(_service, _router) {
+                    this._service = _service;
+                    this._router = _router;
                 }
+                CrisisListComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this._service.getCrises().then(function (crises) { return _this.crises = crises; });
+                };
+                CrisisListComponent.prototype.onSelect = function (crisis) {
+                    this._router.navigate(['CrisisDetail', { id: crisis.id }]);
+                };
                 CrisisListComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h3>CrisisListComponent</h3>\n    <p>Get your crisis here</p>\n    "
+                        template: "\n    <ul class=\"items\">\n      <li *ngFor=\"#crisis of crises\"\n        (click)=\"onSelect(crisis)\">\n        <span class=\"badge\">{{crisis.id}}</span> {{crisis.name}}\n      </li>\n    </ul>\n  ",
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [crisis_service_1.CrisisService, router_1.Router])
                 ], CrisisListComponent);
                 return CrisisListComponent;
             })();
