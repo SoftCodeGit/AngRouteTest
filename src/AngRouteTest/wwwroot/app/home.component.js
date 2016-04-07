@@ -21,7 +21,7 @@ System.register(['angular2/core'], function(exports_1) {
                 }
                 HomeComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h2>Home</h2>\n  "
+                        template: "\n    <h2>Home</h2>\n    <div>\n        <label>Server: </label>\n        <input [(ngModel)]=\"conn.servername\" placeholder=\"server\"/>\n    </div>\n    <div>\n        <label>Database: </label>\n        <input [(ngModel)]=\"conn.databasename\" placeholder=\"database\"/>\n    </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HomeComponent);
