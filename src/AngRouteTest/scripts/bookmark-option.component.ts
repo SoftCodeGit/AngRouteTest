@@ -4,7 +4,7 @@ import {Router, RouteParams} from 'angular2/router';
 
 @Component({
     template: `
-    <h2>Boomark Option</h2>
+    <h3>Boomark Option</h3>
   `
 })
 

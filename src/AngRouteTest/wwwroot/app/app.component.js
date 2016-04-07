@@ -28,32 +28,18 @@ System.register(['angular2/core', 'angular2/router', './home.component', './sear
                 bookmark_option_component_1 = bookmark_option_component_1_1;
             }],
         execute: function() {
-            //import {CrisisCenterComponent} from './crisis-center/crisis-center.component';
-            //import {HeroListComponent}     from './heroes/hero-list.component';
-            //import {HeroDetailComponent}   from './heroes/hero-detail.component';
-            //import {DialogService}         from './dialog.service';
-            //import {HeroService}           from './heroes/hero.service';
             AppComponent = (function () {
                 function AppComponent() {
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h1 class=\"title\">Component Router</h1>\n    <nav>\n      <a [routerLink]=\"['Home']\">Home</a>\n      <a [routerLink]=\"['Search']\">Search</a>\n      <a [routerLink]=\"['Option']\">Bookmark Option</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
+                        template: "\n    <nav>\n      <a [routerLink]=\"['Home']\">Home</a>\n      <a [routerLink]=\"['Search']\">Search</a>\n      <a [routerLink]=\"['Option']\">Bookmark Option</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
                         //providers: [DialogService, HeroService],
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
-                        //{ // Crisis Center child route
-                        //    path: '/crisis-center/...',
-                        //    name: 'CrisisCenter',
-                        //    component: CrisisCenterComponent,
-                        //    useAsDefault: true
-                        //},
-                        //{ path: '/heroes', name: 'Heroes', component: HeroListComponent },
-                        //{ path: '/hero/:id', name: 'HeroDetail', component: HeroDetailComponent },
-                        //{ path: '/disaster', name: 'Asteroid', redirectTo: ['CrisisCenter', 'CrisisDetail', { id: 3 }] }
-                        { path: '/home', name: 'Home', component: home_component_1.HomeComponent },
+                        { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
                         { path: '/search', name: 'Search', component: search_component_1.SearchComponent },
                         { path: '/detail', name: 'Option', component: bookmark_option_component_1.BookmarkOptionComponent }
                     ]), 

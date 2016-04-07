@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './connection-info'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,20 +8,28 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, connection_info_1;
     var HomeComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (connection_info_1_1) {
+                connection_info_1 = connection_info_1_1;
             }],
         execute: function() {
             HomeComponent = (function () {
                 function HomeComponent() {
                 }
+                HomeComponent.prototype.ngOnInit = function () {
+                    this.conn = new connection_info_1.ConnectionInfo();
+                    this.conn.servername = "TARGHEE";
+                    this.conn.databasename = "BookmarkTool";
+                };
                 HomeComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h2>Home</h2>\n    <div>\n        <label>Server: </label>\n        <input [(ngModel)]=\"conn.servername\" placeholder=\"server\"/>\n    </div>\n    <div>\n        <label>Database: </label>\n        <input [(ngModel)]=\"conn.databasename\" placeholder=\"database\"/>\n    </div>\n  "
+                        template: "\n    <h3>Home</h3>\n    <div>\n        <label>Server: </label>\n        <input [(ngModel)]=\"conn.servername\" placeholder=\"server\"/>{{conn.servername}}\n    </div>\n    <div>\n        <label>Database: </label>\n        <input [(ngModel)]=\"conn.databasename\" placeholder=\"database\"/>{{conn.databasename}}\n    </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], HomeComponent);

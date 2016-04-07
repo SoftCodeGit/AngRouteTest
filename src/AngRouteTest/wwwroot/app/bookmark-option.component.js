@@ -21,7 +21,7 @@ System.register(['angular2/core'], function(exports_1) {
                 }
                 BookmarkOptionComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h2>Boomark Option</h2>\n  "
+                        template: "\n    <h3>Boomark Option</h3>\n  "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], BookmarkOptionComponent);
