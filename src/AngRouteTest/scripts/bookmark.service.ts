@@ -32,14 +32,6 @@ export class BookmarkService {
 
     searchBookmarks(reportContextCode:string, searchCriteria:string) {
 
-
-        //let params: URLSearchParams = new URLSearchParams();
-        //params.set('appid', StaticSettings.API_KEY);
-        //params.set('cnt', days.toString());
-
-        //_url:string;
-        //myval: string;
-
         var _url: string = this._Url + "SearchBookmarks?reportContextCode=" + reportContextCode + "&searchCriteria=" + searchCriteria;
 
         console.log(_url);

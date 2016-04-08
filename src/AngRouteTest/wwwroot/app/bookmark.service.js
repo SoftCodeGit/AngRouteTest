@@ -42,11 +42,6 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', './bookmar
                         .catch(this.handleError);
                 };
                 BookmarkService.prototype.searchBookmarks = function (reportContextCode, searchCriteria) {
-                    //let params: URLSearchParams = new URLSearchParams();
-                    //params.set('appid', StaticSettings.API_KEY);
-                    //params.set('cnt', days.toString());
-                    //_url:string;
-                    //myval: string;
                     var _url = this._Url + "SearchBookmarks?reportContextCode=" + reportContextCode + "&searchCriteria=" + searchCriteria;
                     console.log(_url);
                     return this.http.get(_url, [])
