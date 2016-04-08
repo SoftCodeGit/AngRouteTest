@@ -1,4 +1,4 @@
-System.register(['angular2/core', './bookmark.service', './dropdown.component'], function(exports_1) {
+System.register(['angular2/core', './bookmark.service', './dropdown.component', './grid/grid', './grid/column'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component'],
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, bookmark_service_1, dropdown_component_1;
+    var core_1, bookmark_service_1, dropdown_component_1, grid_1, column_1;
     var SearchComponent;
     return {
         setters:[
@@ -20,11 +20,19 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component'],
             },
             function (dropdown_component_1_1) {
                 dropdown_component_1 = dropdown_component_1_1;
+            },
+            function (grid_1_1) {
+                grid_1 = grid_1_1;
+            },
+            function (column_1_1) {
+                column_1 = column_1_1;
             }],
         execute: function() {
             SearchComponent = (function () {
                 function SearchComponent(_bookmarkService) {
                     this._bookmarkService = _bookmarkService;
+                    this.people = this.getPeople();
+                    this.columns = this.getColumns();
                 }
                 ;
                 SearchComponent.prototype.ngOnInit = function () {
@@ -45,10 +53,25 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component'],
                         .subscribe(function (context) { return _this.bookmarks = context; }, function (error) { return _this.errormessage = error; });
                     console.log(this.bookmarks);
                 };
+                SearchComponent.prototype.getPeople = function () {
+                    return [
+                        { firstName: 'Joe', lastName: 'Jackson', age: 20 },
+                        { firstName: 'Peter', lastName: 'Smith', age: 30 },
+                        { firstName: 'Jane', lastName: 'Doe', age: 50 },
+                        { firstName: 'Tim', lastName: 'Smith', age: 80 }
+                    ];
+                };
+                SearchComponent.prototype.getColumns = function () {
+                    return [
+                        new column_1.Column('firstName', 'First Name'),
+                        new column_1.Column('lastName', 'Last Name'),
+                        new column_1.Column('age', 'Age')
+                    ];
+                };
                 SearchComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h3>Boomark Search</h3>\n    <div>\n        <label>Select Bookmark Context:</label>\n        <my-dropdown [contexts]=bookmarkContexts (valueSelected)=\"displayValueSelected($event)\"></my-dropdown>\n    </div>\n    <div>\n      <label>Search: </label>\n      <input [(ngModel)]=\"searchCriteria\" placeholder=\"bookmark name\"/>\n    </div>\n    <p>\n      <button (click)=\"search()\">Search</button>\n    </p>\n    <div>error: {{errormessage}}</div>\n  ",
-                        directives: [dropdown_component_1.DropDownComponent],
+                        template: "\n    <h3>Boomark Search</h3>\n    <div>\n        <label>Select Bookmark Context:</label>\n        <my-dropdown [contexts]=bookmarkContexts (valueSelected)=\"displayValueSelected($event)\"></my-dropdown>\n    </div>\n    <div>\n      <label>Search: </label>\n      <input [(ngModel)]=\"searchCriteria\" placeholder=\"bookmark name\"/>\n    </div>\n    <p>\n      <button (click)=\"search()\">Search</button>\n    </p>\n    <div>error: {{errormessage}}</div>\n    <grid name=\"person grid\" [rows]=\"people\" [columns]=\"columns\"></grid>\n  ",
+                        directives: [dropdown_component_1.DropDownComponent, grid_1.Grid],
                         providers: [bookmark_service_1.BookmarkService]
                     }), 
                     __metadata('design:paramtypes', [bookmark_service_1.BookmarkService])

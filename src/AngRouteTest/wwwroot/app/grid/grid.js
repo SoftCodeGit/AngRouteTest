@@ -36,8 +36,9 @@ System.register(['angular2/core', './sorter'], function(exports_1) {
                 Grid = __decorate([
                     core_1.Component({
                         selector: 'grid',
+                        //template: '<h1>in grid</h1>',
                         inputs: ['rows: rows', 'columns: columns'],
-                        templateUrl: './components/grid/grid.html'
+                        templateUrl: './app/grid/grid-ui.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], Grid);

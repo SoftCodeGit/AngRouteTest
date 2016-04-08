@@ -4,8 +4,9 @@ import {Sorter} from './sorter';
 
 @Component({
     selector: 'grid',
+    //template: '<h1>in grid</h1>',
     inputs: ['rows: rows', 'columns: columns'],
-    templateUrl: './components/grid/grid.html'
+    templateUrl: './app/grid/grid-ui.html'
 })
 
 export class Grid implements OnInit {

@@ -5,7 +5,8 @@ import {BookmarkService} from './bookmark.service';
 import {BookmarkContext} from './bookmark-context';
 import {Bookmark} from './bookmark';
 import {DropDownComponent} from './dropdown.component';
-
+import {Grid} from './grid/grid';
+import {Column} from './grid/column';
 
 @Component({
     template: `
@@ -22,14 +23,25 @@ import {DropDownComponent} from './dropdown.component';
       <button (click)="search()">Search</button>
     </p>
     <div>error: {{errormessage}}</div>
+    <grid name="person grid" [rows]="people" [columns]="columns"></grid>
   `,
-    directives: [DropDownComponent],
+    directives: [DropDownComponent, Grid],
     providers: [BookmarkService]
 })
 
 
 export class SearchComponent implements OnInit {
-    constructor(private _bookmarkService: BookmarkService) { };
+    people: Array<Person>;
+    columns: Array<Column>;
+
+    constructor(private _bookmarkService: BookmarkService) {
+
+        this.people = this.getPeople();
+        this.columns = this.getColumns();
+
+    };
+
+
 
     bookmarkContexts: BookmarkContext[];
     bookmarks: Bookmark[];
@@ -67,4 +79,27 @@ export class SearchComponent implements OnInit {
         console.log(this.bookmarks);
     }
 
+    getPeople(): Array<Person> {
+        return [
+            { firstName: 'Joe', lastName: 'Jackson', age: 20 },
+            { firstName: 'Peter', lastName: 'Smith', age: 30 },
+            { firstName: 'Jane', lastName: 'Doe', age: 50 },
+            { firstName: 'Tim', lastName: 'Smith', age: 80 }
+        ];
+    }
+
+    getColumns(): Array<Column> {
+        return [
+            new Column('firstName', 'First Name'),
+            new Column('lastName', 'Last Name'),
+            new Column('age', 'Age')
+        ];
+    }
+
+}
+
+interface Person {
+    firstName: string;
+    lastName: string;
+    age: number;
 }
