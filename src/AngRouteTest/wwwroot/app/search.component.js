@@ -31,7 +31,7 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component', 
             SearchComponent = (function () {
                 function SearchComponent(_bookmarkService) {
                     this._bookmarkService = _bookmarkService;
-                    this.people = this.getPeople();
+                    //this.people = this.getPeople();
                     this.columns = this.getColumns();
                 }
                 ;
@@ -63,14 +63,15 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component', 
                 };
                 SearchComponent.prototype.getColumns = function () {
                     return [
-                        new column_1.Column('firstName', 'First Name'),
-                        new column_1.Column('lastName', 'Last Name'),
-                        new column_1.Column('age', 'Age')
+                        new column_1.Column('BookmarkCode', 'Bookmark Code'),
+                        new column_1.Column('ReportContextCode', 'Context'),
+                        new column_1.Column('BookmarkDesc', 'Description'),
+                        new column_1.Column('HasBookmarkOptions', 'Options')
                     ];
                 };
                 SearchComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h3>Boomark Search</h3>\n    <div>\n        <label>Select Bookmark Context:</label>\n        <my-dropdown [contexts]=bookmarkContexts (valueSelected)=\"displayValueSelected($event)\"></my-dropdown>\n    </div>\n    <div>\n      <label>Search: </label>\n      <input [(ngModel)]=\"searchCriteria\" placeholder=\"bookmark name\"/>\n    </div>\n    <p>\n      <button (click)=\"search()\">Search</button>\n    </p>\n    <div>error: {{errormessage}}</div>\n    <grid name=\"person grid\" [rows]=\"people\" [columns]=\"columns\"></grid>\n  ",
+                        template: "\n    <h3>Boomark Search</h3>\n    <div>\n        <label>Select Bookmark Context:</label>\n        <my-dropdown [contexts]=bookmarkContexts (valueSelected)=\"displayValueSelected($event)\"></my-dropdown>\n    </div>\n    <div>\n      <label>Search: </label>\n      <input [(ngModel)]=\"searchCriteria\" placeholder=\"bookmark name\"/>\n    </div>\n    <p>\n      <button (click)=\"search()\">Search</button>\n    </p>\n    <div>error: {{errormessage}}</div>\n    <grid name=\"person grid\" [rows]=\"bookmarks\" [columns]=\"columns\"></grid>\n  ",
                         directives: [dropdown_component_1.DropDownComponent, grid_1.Grid],
                         providers: [bookmark_service_1.BookmarkService]
                     }), 

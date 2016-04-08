@@ -23,7 +23,7 @@ import {Column} from './grid/column';
       <button (click)="search()">Search</button>
     </p>
     <div>error: {{errormessage}}</div>
-    <grid name="person grid" [rows]="people" [columns]="columns"></grid>
+    <grid name="person grid" [rows]="bookmarks" [columns]="columns"></grid>
   `,
     directives: [DropDownComponent, Grid],
     providers: [BookmarkService]
@@ -31,12 +31,12 @@ import {Column} from './grid/column';
 
 
 export class SearchComponent implements OnInit {
-    people: Array<Person>;
+    //people: Array<Person>;
     columns: Array<Column>;
 
     constructor(private _bookmarkService: BookmarkService) {
 
-        this.people = this.getPeople();
+        //this.people = this.getPeople();
         this.columns = this.getColumns();
 
     };
@@ -90,9 +90,10 @@ export class SearchComponent implements OnInit {
 
     getColumns(): Array<Column> {
         return [
-            new Column('firstName', 'First Name'),
-            new Column('lastName', 'Last Name'),
-            new Column('age', 'Age')
+            new Column('BookmarkCode', 'Bookmark Code'),
+            new Column('ReportContextCode', 'Context'),
+            new Column('BookmarkDesc', 'Description'),
+            new Column('HasBookmarkOptions', 'Options')         
         ];
     }
 
