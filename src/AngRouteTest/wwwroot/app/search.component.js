@@ -28,17 +28,21 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component'],
                 }
                 ;
                 SearchComponent.prototype.ngOnInit = function () {
-                    this.bookmarkContexts = this._bookmarkService.getContextMock();
+                    //this.bookmarkContexts = this._bookmarkService.getContextMock();
+                    var _this = this;
+                    this._bookmarkService.getReportContexts()
+                        .subscribe(function (context) { return _this.bookmarkContexts = context; }, function (error) { return _this.errormessage = error; });
                 };
                 SearchComponent.prototype.displayValueSelected = function (ev) {
-                    this.myVal = ev;
+                    this.selectedItem = ev;
                 };
                 SearchComponent.prototype.search = function () {
+                    console.log("search item:" + this.selectedItem);
                     console.log("search criteria:" + this.searchCriteria);
                 };
                 SearchComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h3>Boomark Search</h3>\n    <div>\n        <label>Select Bookmark Context:</label>\n        <my-dropdown [contexts]=bookmarkContexts (valueSelected)=\"displayValueSelected($event)\"></my-dropdown>\n    </div>\n    <div>event: {{myVal}}</div>\n    <div>\n      <label>Search: </label>\n      <input [(ngModel)]=\"searchCriteria\" placeholder=\"bookmark name\"/>\n    </div>\n    <p>\n      <button (click)=\"search()\">Search</button>\n    </p>\n  ",
+                        template: "\n    <h3>Boomark Search</h3>\n    <div>\n        <label>Select Bookmark Context:</label>\n        <my-dropdown [contexts]=bookmarkContexts (valueSelected)=\"displayValueSelected($event)\"></my-dropdown>\n    </div>\n    <div>\n      <label>Search: </label>\n      <input [(ngModel)]=\"searchCriteria\" placeholder=\"bookmark name\"/>\n    </div>\n    <p>\n      <button (click)=\"search()\">Search</button>\n    </p>\n    <div>error: {{errormessage}}</div>\n  ",
                         directives: [dropdown_component_1.DropDownComponent],
                         providers: [bookmark_service_1.BookmarkService]
                     }), 

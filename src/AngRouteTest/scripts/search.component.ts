@@ -13,7 +13,6 @@ import {DropDownComponent} from './dropdown.component';
         <label>Select Bookmark Context:</label>
         <my-dropdown [contexts]=bookmarkContexts (valueSelected)="displayValueSelected($event)"></my-dropdown>
     </div>
-    <div>event: {{myVal}}</div>
     <div>
       <label>Search: </label>
       <input [(ngModel)]="searchCriteria" placeholder="bookmark name"/>
@@ -21,6 +20,7 @@ import {DropDownComponent} from './dropdown.component';
     <p>
       <button (click)="search()">Search</button>
     </p>
+    <div>error: {{errormessage}}</div>
   `,
     directives: [DropDownComponent],
     providers: [BookmarkService]
@@ -32,18 +32,25 @@ export class SearchComponent implements OnInit {
 
     bookmarkContexts: BookmarkContext[]
     searchCriteria: string;
+    errormessage: string;
 
     ngOnInit() {
-        this.bookmarkContexts = this._bookmarkService.getContextMock();
+        //this.bookmarkContexts = this._bookmarkService.getContextMock();
+
+        this._bookmarkService.getReportContexts()
+            .subscribe(
+            context => this.bookmarkContexts = context,
+            error => this.errormessage = <any>error);
     }
 
-    public myVal: string;
+    public selectedItem: string;
 
     displayValueSelected(ev: string) {
-        this.myVal = ev;
+        this.selectedItem = ev;
     }
 
     search() {
+        console.log("search item:" + this.selectedItem);
         console.log("search criteria:" + this.searchCriteria);
     }
 

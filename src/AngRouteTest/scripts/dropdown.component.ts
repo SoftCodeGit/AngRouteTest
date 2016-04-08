@@ -4,7 +4,7 @@ import {BookmarkContext} from './bookmark-context';
 @Component({
     selector: 'my-dropdown',
     template: `
-    <select (change)="onSelect($event.target.value)">
+    <select  [(ngModel)]="selectedItem"  (change)="onSelect($event.target.value)">
       <option *ngFor="#context of contexts" [value]="context.ReportContextCode">{{context.ReportContextDesc}}</option>
     </select>
     `
@@ -13,6 +13,8 @@ import {BookmarkContext} from './bookmark-context';
 export class DropDownComponent {
     @Input() contexts: BookmarkContext[];
     @Output() valueSelected = new EventEmitter();
+
+    selectedItem: string;
 
     onSelect(reportContextCode) {
         this.valueSelected.emit(reportContextCode);
