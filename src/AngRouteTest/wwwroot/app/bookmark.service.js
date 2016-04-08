@@ -28,7 +28,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', './bookmar
             BookmarkService = (function () {
                 function BookmarkService(http) {
                     this.http = http;
-                    this._Url = 'http://localhost:55250/Bookmark/GetBookmarkContextList'; // URL to web api
+                    this._Url = 'http://localhost:55250/Bookmark/'; // URL to web api
                 }
                 BookmarkService.prototype.getContextMock = function () {
                     return bookmark_service_mock_1.CONTEXTS;
@@ -36,10 +36,26 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', './bookmar
                 BookmarkService.prototype.getReportContexts = function () {
                     //return this.http.get(this._Url).map(res => res.json());
                     //return this.http.get(this._Url).map(res => <BookmarkContext[]>res.json());
-                    return this.http.get(this._Url)
+                    return this.http.get(this._Url + "GetBookmarkContextList")
                         .map(function (res) { return res.json(); })
-                        .do(function (data) { return console.log(data); }) // eyeball results in the console
+                        .do(function (data) { return console.log(data); })
                         .catch(this.handleError);
+                };
+                BookmarkService.prototype.searchBookmarks = function (reportContextCode, searchCriteria) {
+                    //let params: URLSearchParams = new URLSearchParams();
+                    //params.set('appid', StaticSettings.API_KEY);
+                    //params.set('cnt', days.toString());
+                    //_url:string;
+                    //myval: string;
+                    var _url = this._Url + "SearchBookmarks?reportContextCode=" + reportContextCode + "&searchCriteria=" + searchCriteria;
+                    console.log(_url);
+                    return this.http.get(_url, [])
+                        .map(function (res) { return res.json(); })
+                        .do(function (data) { return console.log(data); })
+                        .catch(this.handleError);
+                };
+                BookmarkService.prototype.getBookmarksMock = function (reportContextCode, searchCriteria) {
+                    return bookmark_service_mock_1.BOOKMARKS;
                 };
                 BookmarkService.prototype.handleError = function (error) {
                     // in a real world app, we may send the error to some remote logging infrastructure

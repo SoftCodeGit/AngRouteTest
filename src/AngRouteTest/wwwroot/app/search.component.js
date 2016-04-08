@@ -34,11 +34,16 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component'],
                         .subscribe(function (context) { return _this.bookmarkContexts = context; }, function (error) { return _this.errormessage = error; });
                 };
                 SearchComponent.prototype.displayValueSelected = function (ev) {
-                    this.selectedItem = ev;
+                    this.selectedBookmarkContext = ev;
                 };
                 SearchComponent.prototype.search = function () {
-                    console.log("search item:" + this.selectedItem);
+                    var _this = this;
+                    console.log("search item:" + this.selectedBookmarkContext);
                     console.log("search criteria:" + this.searchCriteria);
+                    this.bookmarks = this._bookmarkService.getBookmarksMock(this.selectedBookmarkContext, this.searchCriteria);
+                    this._bookmarkService.searchBookmarks(this.selectedBookmarkContext, this.searchCriteria)
+                        .subscribe(function (context) { return _this.bookmarks = context; }, function (error) { return _this.errormessage = error; });
+                    console.log(this.bookmarks);
                 };
                 SearchComponent = __decorate([
                     core_1.Component({

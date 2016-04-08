@@ -2,14 +2,15 @@
 import {Http, Response} from 'angular2/http';
 import {Observable}     from 'rxjs/Observable';
 import {BookmarkContext}     from './bookmark-context';
-import {CONTEXTS}     from './bookmark.service.mock';
-
+import {Bookmark} from './bookmark';
+import {CONTEXTS, BOOKMARKS}     from './bookmark.service.mock';
 
 @Injectable() //don't forget parens
 export class BookmarkService {
     constructor(private http: Http) { }
 
-    private _Url = 'http://localhost:55250/Bookmark/GetBookmarkContextList';  // URL to web api
+    private _Url = 'http://localhost:55250/Bookmark/';  // URL to web api
+
 
 
     getContextMock() {
@@ -21,12 +22,39 @@ export class BookmarkService {
         //return this.http.get(this._Url).map(res => res.json());
         //return this.http.get(this._Url).map(res => <BookmarkContext[]>res.json());
 
-        return this.http.get(this._Url)
+
+        return this.http.get(this._Url + "GetBookmarkContextList")
             .map(res => <BookmarkContext[]>res.json())
-            .do(data => console.log(data)) // eyeball results in the console
+            .do(data => console.log(data))
             .catch(this.handleError);
 
     }
+
+    searchBookmarks(reportContextCode:string, searchCriteria:string) {
+
+
+        //let params: URLSearchParams = new URLSearchParams();
+        //params.set('appid', StaticSettings.API_KEY);
+        //params.set('cnt', days.toString());
+
+        //_url:string;
+        //myval: string;
+
+        var _url: string = this._Url + "SearchBookmarks?reportContextCode=" + reportContextCode + "&searchCriteria=" + searchCriteria;
+
+        console.log(_url);
+
+        return this.http.get(_url, [])
+            .map(res => <Bookmark[]>res.json())
+            .do(data => console.log(data)) 
+            .catch(this.handleError);
+
+    }
+
+    getBookmarksMock(reportContextCode: string, searchCriteria: string) {
+        return BOOKMARKS;
+    }
+
 
     private handleError(error: Response) {
         // in a real world app, we may send the error to some remote logging infrastructure
@@ -34,4 +62,7 @@ export class BookmarkService {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
     }
+
+
+
 }
