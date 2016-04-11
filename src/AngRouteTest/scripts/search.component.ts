@@ -101,7 +101,6 @@ export class SearchComponent implements OnInit {
 
     getColumns(): Array<Column> {
         return [
-            new Column('BUTTON', 'Details'),
             new Column('BookmarkCode', 'Bookmark Code'),
             new Column('ReportContextCode', 'Context'),
             new Column('BookmarkDesc', 'Description'),

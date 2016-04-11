@@ -3,14 +3,13 @@
         <td *ngFor="#col of columns"><a (click)="sort(col.name)">{{col.descr}}</a></td>
     </tr>
     <tr *ngFor="#row of rows"  (click)="onRowClicked(row)">
-
-        <td *ngFor="#col of columns">{{row[col.name]}}</td>
+        <td *ngFor="#col of columns">
+            <span [ngSwitch]="col.name">
+                <span *ngSwitchWhen="'HasBookmarkOptions'">
+                    <button *ngIf="row[col.name]">View</button>
+                </span>
+                <span *ngSwitchDefault>{{row[col.name]}}</span>
+            </span>                              
+        </td>
     </tr>
 </table>
-<!--<div class="container">
-    <div class="row" *ngFor="#row of rows" (click)="onRowClicked(row)">
-        <div class="col-md-3" *ngFor="#col of columns">{{row[col.name]}}</div>
-        <div class="col-md-4">.col-md-4</div>
-        <div class="col-md-4">.col-md-4</div>
-    </div>
-</div>-->

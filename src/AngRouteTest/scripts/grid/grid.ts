@@ -33,6 +33,9 @@ export class Grid implements OnInit {
     onRowClicked(row: any) {
         //console.log(row);
         this.rowClicked.emit(row);
-
     }
+
+    //hasOptions(row: any, col: Column) {
+    //    return row[col.name];
+    //}
 }

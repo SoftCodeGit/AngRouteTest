@@ -72,7 +72,6 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component', 
                 //}
                 SearchComponent.prototype.getColumns = function () {
                     return [
-                        new column_1.Column('BUTTON', 'Details'),
                         new column_1.Column('BookmarkCode', 'Bookmark Code'),
                         new column_1.Column('ReportContextCode', 'Context'),
                         new column_1.Column('BookmarkDesc', 'Description'),
@@ -81,7 +80,7 @@ System.register(['angular2/core', './bookmark.service', './dropdown.component', 
                 };
                 SearchComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h3>Boomark Search</h3>\n    <div class=\"container\">\n    <div>\n        <label>Select Bookmark Context:</label>\n        <my-dropdown [contexts]=bookmarkContexts (valueSelected)=\"displayValueSelected($event)\"></my-dropdown>\n    </div>\n    <div>\n      <label>Search: </label>\n      <input [(ngModel)]=\"searchCriteria\" placeholder=\"search criteria\"/>\n    </div>\n    <div>\n      <label>Selected Bookmark: </label>\n      <input [value]=\"selectedBookmark\" placeholder=\"bookmark name\"/>\n    </div>\n    </div>\n    <p>\n      <button (click)=\"search()\">Search</button>\n    </p>\n    <div>error: {{errormessage}}</div>\n    <grid name=\"person grid\" [rows]=\"bookmarks\" [columns]=\"columns\" (rowClicked)=\"getRowClicked($event)\"></grid>\n  ",
+                        template: "\n    <h3>Boomark Search</h3>\n    <div class=\"container\">\n    <div>\n        <label>Select Bookmark Context:</label>\n        <my-dropdown [contexts]=bookmarkContexts (valueSelected)=\"displayValueSelected($event)\"></my-dropdown>\n    </div>\n    <div>\n      <label>Search: </label>\n      <input [(ngModel)]=\"searchCriteria\" placeholder=\"search criteria\"/>\n    </div>\n    <div>\n      <label>Selected Bookmark: </label>\n      <input [value]=\"selectedBookmark\" placeholder=\"bookmark name\"/>\n    </div>\n    </div>\n    <p>\n      <button (click)=\"search()\">Search</button>\n    </p>\n    <div>{{errormessage}}</div>\n    <grid name=\"person grid\" [rows]=\"bookmarks\" [columns]=\"columns\" (rowClicked)=\"getRowClicked($event)\"></grid>\n  ",
                         directives: [dropdown_component_1.DropDownComponent, grid_1.Grid],
                         providers: [bookmark_service_1.BookmarkService]
                     }), 
