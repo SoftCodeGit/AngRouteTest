@@ -29,7 +29,7 @@ import {Column} from './grid/column';
       <button (click)="search()">Search</button>
     </p>
     <div>{{errormessage}}</div>
-    <grid name="person grid" [rows]="bookmarks" [columns]="columns" (rowClicked)="getRowClicked($event)"></grid>
+    <grid name="person grid" [rows]="bookmarks" [columns]="columns" (rowClicked)="getRowClicked($event)" (viewClicked)="getViewClicked($event)"></grid>
   `,
     directives: [DropDownComponent, Grid],
     providers: [BookmarkService]
@@ -87,6 +87,12 @@ export class SearchComponent implements OnInit {
     getRowClicked(row:Bookmark) {
         //console.log("In search");
         //console.log(row);
+        this.selectedBookmark = row.BookmarkCode;
+    }
+
+    getViewClicked(row: Bookmark) {
+        //console.log("In search");
+        console.log(row);
         this.selectedBookmark = row.BookmarkCode;
     }
 

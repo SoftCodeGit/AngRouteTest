@@ -14,6 +14,7 @@ export class Grid implements OnInit {
     @Input() columns: Array<any>;
 
     @Output() rowClicked = new EventEmitter();
+    @Output() viewClicked = new EventEmitter();
 
     //columns: Array<Column>;
     //rows: Array<any>;
@@ -33,6 +34,10 @@ export class Grid implements OnInit {
     onRowClicked(row: any) {
         //console.log(row);
         this.rowClicked.emit(row);
+    }
+
+    onViewClicked(row: any) {
+        this.viewClicked.emit(row);
     }
 
     //hasOptions(row: any, col: Column) {

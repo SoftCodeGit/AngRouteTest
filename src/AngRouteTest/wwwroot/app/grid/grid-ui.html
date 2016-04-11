@@ -6,7 +6,7 @@
         <td *ngFor="#col of columns">
             <span [ngSwitch]="col.name">
                 <span *ngSwitchWhen="'HasBookmarkOptions'">
-                    <button *ngIf="row[col.name]">View</button>
+                    <button *ngIf="row[col.name]"  (click)="onViewClicked(row)">View</button>
                 </span>
                 <span *ngSwitchDefault>{{row[col.name]}}</span>
             </span>                              

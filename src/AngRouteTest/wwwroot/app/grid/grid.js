@@ -22,6 +22,7 @@ System.register(['angular2/core', './sorter'], function(exports_1) {
             Grid = (function () {
                 function Grid() {
                     this.rowClicked = new core_1.EventEmitter();
+                    this.viewClicked = new core_1.EventEmitter();
                     this.sorter = new sorter_1.Sorter();
                 }
                 Grid.prototype.sort = function (key) {
@@ -33,6 +34,9 @@ System.register(['angular2/core', './sorter'], function(exports_1) {
                 Grid.prototype.onRowClicked = function (row) {
                     //console.log(row);
                     this.rowClicked.emit(row);
+                };
+                Grid.prototype.onViewClicked = function (row) {
+                    this.viewClicked.emit(row);
                 };
                 __decorate([
                     core_1.Input(), 
@@ -46,6 +50,10 @@ System.register(['angular2/core', './sorter'], function(exports_1) {
                     core_1.Output(), 
                     __metadata('design:type', Object)
                 ], Grid.prototype, "rowClicked", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], Grid.prototype, "viewClicked", void 0);
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', String)
