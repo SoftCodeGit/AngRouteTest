@@ -21,6 +21,7 @@ System.register(['angular2/core', './sorter'], function(exports_1) {
         execute: function() {
             Grid = (function () {
                 function Grid() {
+                    this.rowClicked = new core_1.EventEmitter();
                     this.sorter = new sorter_1.Sorter();
                 }
                 Grid.prototype.sort = function (key) {
@@ -29,6 +30,22 @@ System.register(['angular2/core', './sorter'], function(exports_1) {
                 Grid.prototype.ngOnInit = function () {
                     console.log(this.name);
                 };
+                Grid.prototype.onRowClicked = function (row) {
+                    //console.log(row);
+                    this.rowClicked.emit(row);
+                };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Array)
+                ], Grid.prototype, "rows", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Array)
+                ], Grid.prototype, "columns", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], Grid.prototype, "rowClicked", void 0);
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', String)
@@ -37,7 +54,7 @@ System.register(['angular2/core', './sorter'], function(exports_1) {
                     core_1.Component({
                         selector: 'grid',
                         //template: '<h1>in grid</h1>',
-                        inputs: ['rows: rows', 'columns: columns'],
+                        //inputs: ['rows: rows', 'columns: columns'],
                         templateUrl: './app/grid/grid-ui.html'
                     }), 
                     __metadata('design:paramtypes', [])

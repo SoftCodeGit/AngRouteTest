@@ -11,19 +11,25 @@ import {Column} from './grid/column';
 @Component({
     template: `
     <h3>Boomark Search</h3>
+    <div class="container">
     <div>
         <label>Select Bookmark Context:</label>
         <my-dropdown [contexts]=bookmarkContexts (valueSelected)="displayValueSelected($event)"></my-dropdown>
     </div>
     <div>
       <label>Search: </label>
-      <input [(ngModel)]="searchCriteria" placeholder="bookmark name"/>
+      <input [(ngModel)]="searchCriteria" placeholder="search criteria"/>
+    </div>
+    <div>
+      <label>Selected Bookmark: </label>
+      <input [value]="selectedBookmark" placeholder="bookmark name"/>
+    </div>
     </div>
     <p>
       <button (click)="search()">Search</button>
     </p>
-    <div>error: {{errormessage}}</div>
-    <grid name="person grid" [rows]="bookmarks" [columns]="columns"></grid>
+    <div>{{errormessage}}</div>
+    <grid name="person grid" [rows]="bookmarks" [columns]="columns" (rowClicked)="getRowClicked($event)"></grid>
   `,
     directives: [DropDownComponent, Grid],
     providers: [BookmarkService]
@@ -41,21 +47,20 @@ export class SearchComponent implements OnInit {
 
     };
 
-
-
     bookmarkContexts: BookmarkContext[];
     bookmarks: Bookmark[];
-    searchCriteria: string;
+    searchCriteria: string = "";
     errormessage: string;
     myval: string;
+    selectedBookmark: string = "";
 
     ngOnInit() {
-        //this.bookmarkContexts = this._bookmarkService.getContextMock();
+        this.bookmarkContexts = this._bookmarkService.getContextMock();
 
-        this._bookmarkService.getReportContexts()
-            .subscribe(
-            context => this.bookmarkContexts = context,
-            error => this.errormessage = <any>error);
+        //this._bookmarkService.getReportContexts()
+        //    .subscribe(
+        //    context => this.bookmarkContexts = context,
+        //    error => this.errormessage = <any>error);
     }
 
     public selectedBookmarkContext:string;
@@ -71,25 +76,32 @@ export class SearchComponent implements OnInit {
         this.bookmarks = this._bookmarkService.getBookmarksMock(this.selectedBookmarkContext, this.searchCriteria);
         
 
-        this._bookmarkService.searchBookmarks(this.selectedBookmarkContext, this.searchCriteria)
-            .subscribe(
-            context => this.bookmarks = context,
-            error => this.errormessage = <any>error);
+        //this._bookmarkService.searchBookmarks(this.selectedBookmarkContext, this.searchCriteria)
+        //    .subscribe(
+        //    context => this.bookmarks = context,
+        //    error => this.errormessage = <any>error);
 
         console.log(this.bookmarks);
     }
 
-    getPeople(): Array<Person> {
-        return [
-            { firstName: 'Joe', lastName: 'Jackson', age: 20 },
-            { firstName: 'Peter', lastName: 'Smith', age: 30 },
-            { firstName: 'Jane', lastName: 'Doe', age: 50 },
-            { firstName: 'Tim', lastName: 'Smith', age: 80 }
-        ];
+    getRowClicked(row:Bookmark) {
+        //console.log("In search");
+        //console.log(row);
+        this.selectedBookmark = row.BookmarkCode;
     }
+
+    //getPeople(): Array<Person> {
+    //    return [
+    //        { firstName: 'Joe', lastName: 'Jackson', age: 20 },
+    //        { firstName: 'Peter', lastName: 'Smith', age: 30 },
+    //        { firstName: 'Jane', lastName: 'Doe', age: 50 },
+    //        { firstName: 'Tim', lastName: 'Smith', age: 80 }
+    //    ];
+    //}
 
     getColumns(): Array<Column> {
         return [
+            new Column('BUTTON', 'Details'),
             new Column('BookmarkCode', 'Bookmark Code'),
             new Column('ReportContextCode', 'Context'),
             new Column('BookmarkDesc', 'Description'),
@@ -99,8 +111,8 @@ export class SearchComponent implements OnInit {
 
 }
 
-interface Person {
-    firstName: string;
-    lastName: string;
-    age: number;
-}
+//interface Person {
+//    firstName: string;
+//    lastName: string;
+//    age: number;
+//}
