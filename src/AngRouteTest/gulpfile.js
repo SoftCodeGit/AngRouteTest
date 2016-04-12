@@ -22,7 +22,8 @@ var libs = [
     paths.npm + 'systemjs/dist/system.js',
     paths.npm + 'systemjs/dist/system-polyfills.js',
     paths.npm + 'angular2/es6/dev/src/testing/shims_for_IE.js',
-    paths.npm + 'bootstrap/dist/js/bootstrap*.js'
+    paths.npm + 'bootstrap/dist/js/bootstrap*.js',
+    paths.npm + 'clipboard.js',
 ];
 
 // the entire content under rxjs folder is needed
