@@ -1,8 +1,8 @@
-﻿import {Component, Directive, ElementRef, Input, Output, EventEmitter, OnInit} from 'angular2/core';
+﻿import {Component, Input, OnInit} from 'angular2/core';
 import {NgClass} from 'angular2/common';
-//import Clipboard from 'clipboard/clipboard';
 
-//import Clipboard from 'clipboard';
+import {BookmarkOptionValue} from './bookmark-option-value';
+import {BookmarkOptionValueChangeService} from './bookmark-option-value-change.service';
 
 @Component({
     selector: 'label-copy',
@@ -12,20 +12,35 @@ import {NgClass} from 'angular2/common';
         <button (click)="doCopy()" [ngClass]="copyClass">Copy</button>
     </div>
   `,
-    directives: [NgClass]
+    directives: [NgClass],
+    providers: [BookmarkOptionValueChangeService]
 })
 
-export class LabelCopyComponent implements OnInit {
+export class LabelCopyComponent implements OnInit  {
     @Input() bookmarkCode: string;
 
     copyClass: string;
 
+    constructor(private _bookmarkOptionValueChangeService: BookmarkOptionValueChangeService) {
+        console.log("constructor");
+    };
 
     ngOnInit() {
-        
+        console.log("in init");
+        this._bookmarkOptionValueChangeService.bookmarkOptionValueChanged$.subscribe(optionValue => this.onBookmarkOptionValueChanged(optionValue));
 
     };
 
+
+
+    onBookmarkOptionValueChanged(optionValue: BookmarkOptionValue) {
+        console.log("in onBookmarkOptionValueChanged");
+        console.log(optionValue.bookmarkCode);
+
+    }
+
+
+    
     doCopy() {
 
         var bookmarkText = document.querySelector('.copy-label'); 

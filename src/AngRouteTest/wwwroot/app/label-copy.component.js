@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common'], function(exports_1) {
+System.register(['angular2/core', 'angular2/common', './bookmark-option-value-change.service'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1;
+    var core_1, common_1, bookmark_option_value_change_service_1;
     var LabelCopyComponent;
     return {
         setters:[
@@ -17,16 +17,27 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
             },
             function (common_1_1) {
                 common_1 = common_1_1;
+            },
+            function (bookmark_option_value_change_service_1_1) {
+                bookmark_option_value_change_service_1 = bookmark_option_value_change_service_1_1;
             }],
         execute: function() {
-            //import Clipboard from 'clipboard/clipboard';
-            //import Clipboard from 'clipboard';
             LabelCopyComponent = (function () {
-                function LabelCopyComponent() {
+                function LabelCopyComponent(_bookmarkOptionValueChangeService) {
+                    this._bookmarkOptionValueChangeService = _bookmarkOptionValueChangeService;
+                    console.log("constructor");
                 }
+                ;
                 LabelCopyComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    console.log("in init");
+                    this._bookmarkOptionValueChangeService.bookmarkOptionValueChanged$.subscribe(function (optionValue) { return _this.onBookmarkOptionValueChanged(optionValue); });
                 };
                 ;
+                LabelCopyComponent.prototype.onBookmarkOptionValueChanged = function (optionValue) {
+                    console.log("in onBookmarkOptionValueChanged");
+                    console.log(optionValue.bookmarkCode);
+                };
                 LabelCopyComponent.prototype.doCopy = function () {
                     var _this = this;
                     var bookmarkText = document.querySelector('.copy-label');
@@ -38,6 +49,7 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                     //window.alert(successful);
                     window.getSelection().removeAllRanges();
                     this.copyClass = "copied";
+                    //wait one second then change the class back to empty.
                     setTimeout(function () { return _this.copyClass = ""; }, 1000);
                 };
                 __decorate([
@@ -48,9 +60,10 @@ System.register(['angular2/core', 'angular2/common'], function(exports_1) {
                     core_1.Component({
                         selector: 'label-copy',
                         template: "\n    <div>\n        <label class=\"copy-label\">{{bookmarkCode}}</label>\n        <button (click)=\"doCopy()\" [ngClass]=\"copyClass\">Copy</button>\n    </div>\n  ",
-                        directives: [common_1.NgClass]
+                        directives: [common_1.NgClass],
+                        providers: [bookmark_option_value_change_service_1.BookmarkOptionValueChangeService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [bookmark_option_value_change_service_1.BookmarkOptionValueChangeService])
                 ], LabelCopyComponent);
                 return LabelCopyComponent;
             })();

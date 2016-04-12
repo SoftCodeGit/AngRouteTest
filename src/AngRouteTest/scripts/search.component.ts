@@ -32,7 +32,7 @@ import {Column} from './grid/column';
       <button (click)="search()">Search</button>
     </p>
     <div>{{errormessage}}</div>
-    <grid name="person grid" [rows]="bookmarks" [columns]="columns" (rowClicked)="getRowClicked($event)" (viewClicked)="getViewClicked($event)"></grid>
+    <grid name="person grid" [rows]="bookmarks" [columns]="columns"  (viewClicked)="getViewClicked($event)"></grid>
      <router-outlet></router-outlet>
   `,
     directives: [DropDownComponent, Grid],
@@ -89,11 +89,11 @@ export class SearchComponent implements OnInit {
         //console.log(this.bookmarks);
     }
 
-    getRowClicked(row:Bookmark) {
-        //console.log("In search");
-        //console.log(row);
-        this.selectedBookmark = row.BookmarkCode;
-    }
+    //getRowClicked(row:Bookmark) {
+    //    //console.log("In search");
+    //    //console.log(row);
+    //    this.selectedBookmark = row.BookmarkCode;
+    //}
 
     getViewClicked(row: Bookmark) {
         //console.log("In search");
