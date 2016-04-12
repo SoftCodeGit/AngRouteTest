@@ -3,6 +3,8 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {HomeComponent} from './home.component';
 import {SearchHomeComponent} from './search-home.component';
+import {MissionControlComponent} from './mission-control.component';
+
 //import {SearchComponent} from './search.component';
 //import {BookmarkOptionComponent} from './bookmark-option.component';
 
@@ -16,9 +18,10 @@ import {SearchHomeComponent} from './search-home.component';
       <!--<a [routerLink]="['Option']">Bookmark Option</a>-->
     </nav>
     <router-outlet></router-outlet>
+    <mission-control></mission-control>
   `,
     //providers: [DialogService, HeroService],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, MissionControlComponent]
 })
 @RouteConfig([
     { path: '/home', name: 'Home', component: HomeComponent, useAsDefault:true },

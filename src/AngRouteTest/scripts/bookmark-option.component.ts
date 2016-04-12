@@ -41,7 +41,7 @@ export class BookmarkOptionComponent implements OnInit {
         _bookmarkOptionValue.bookmarkCode = this.bookmarkCode;
       
         //TODO add options
-
+        
         this._bookmarkChangeService.bookmarkOptionValueChangeBroadcast(_bookmarkOptionValue);
 
         console.log("end doTest");

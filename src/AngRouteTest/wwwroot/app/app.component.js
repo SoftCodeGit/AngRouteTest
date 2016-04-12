@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './home.component', './search-home.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './home.component', './search-home.component', './mission-control.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', './home.component', './sear
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, home_component_1, search_home_component_1;
+    var core_1, router_1, home_component_1, search_home_component_1, mission_control_component_1;
     var AppComponent;
     return {
         setters:[
@@ -23,6 +23,9 @@ System.register(['angular2/core', 'angular2/router', './home.component', './sear
             },
             function (search_home_component_1_1) {
                 search_home_component_1 = search_home_component_1_1;
+            },
+            function (mission_control_component_1_1) {
+                mission_control_component_1 = mission_control_component_1_1;
             }],
         execute: function() {
             //import {SearchComponent} from './search.component';
@@ -33,9 +36,9 @@ System.register(['angular2/core', 'angular2/router', './home.component', './sear
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <nav>\n      <a [routerLink]=\"['Home']\">Home</a>\n      <a [routerLink]=\"['Search']\">Search</a>\n      <!--<a [routerLink]=\"['Option']\">Bookmark Option</a>-->\n    </nav>\n    <router-outlet></router-outlet>\n  ",
+                        template: "\n    <nav>\n      <a [routerLink]=\"['Home']\">Home</a>\n      <a [routerLink]=\"['Search']\">Search</a>\n      <!--<a [routerLink]=\"['Option']\">Bookmark Option</a>-->\n    </nav>\n    <router-outlet></router-outlet>\n    <mission-control></mission-control>\n  ",
                         //providers: [DialogService, HeroService],
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        directives: [router_1.ROUTER_DIRECTIVES, mission_control_component_1.MissionControlComponent]
                     }),
                     router_1.RouteConfig([
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },

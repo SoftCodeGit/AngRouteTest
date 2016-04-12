@@ -1,5 +1,6 @@
 ﻿import {Component, Input, OnInit} from 'angular2/core';
 import {NgClass} from 'angular2/common';
+import {Subscription}   from 'rxjs/Subscription';
 
 import {BookmarkOptionValue} from './bookmark-option-value';
 import {BookmarkOptionValueChangeService} from './bookmark-option-value-change.service';
