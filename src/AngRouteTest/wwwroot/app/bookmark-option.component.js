@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './label-copy.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1;
+    var core_1, router_1, label_copy_component_1;
     var BookmarkOptionComponent;
     return {
         setters:[
@@ -17,6 +17,9 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1) {
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (label_copy_component_1_1) {
+                label_copy_component_1 = label_copy_component_1_1;
             }],
         execute: function() {
             BookmarkOptionComponent = (function () {
@@ -33,7 +36,8 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1) {
                 ;
                 BookmarkOptionComponent = __decorate([
                     core_1.Component({
-                        template: "\n    <h3>Boomark Option</h3>\n    {{bookmarkCode}}\n  "
+                        template: "\n    <h3>Boomark Option</h3>\n    <label-copy [bookmarkCode]=\"bookmarkCode\"></label-copy>\n  ",
+                        directives: [label_copy_component_1.LabelCopyComponent]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, router_1.RouteParams])
                 ], BookmarkOptionComponent);

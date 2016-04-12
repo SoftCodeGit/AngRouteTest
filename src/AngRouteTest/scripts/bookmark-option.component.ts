@@ -1,12 +1,13 @@
 ﻿import {Component, OnInit}   from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
-
+import {LabelCopyComponent} from './label-copy.component';
 
 @Component({
     template: `
     <h3>Boomark Option</h3>
-    {{bookmarkCode}}
-  `
+    <label-copy [bookmarkCode]="bookmarkCode"></label-copy>
+  `,
+    directives: [LabelCopyComponent]
 })
 
 
