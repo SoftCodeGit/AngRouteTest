@@ -1,43 +1,42 @@
-﻿import {Component, Input, OnInit} from 'angular2/core';
+﻿import {Component, OnInit} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {Subscription}   from 'rxjs/Subscription';
 
 import {BookmarkOptionValue} from './bookmark-option-value';
 import {BookmarkOptionValueChangeService} from './bookmark-option-value-change.service';
+import {BookmarkService} from './bookmark.service';
 
 @Component({
     selector: 'label-copy',
     template: `
     <div>
-        <label class="copy-label">{{bookmarkCode}}</label>
+        <label class="copy-label">{{bookmarkText}}</label>
         <button (click)="doCopy()" [ngClass]="copyClass">Copy</button>
     </div>
   `,
     directives: [NgClass],
-    providers: [BookmarkOptionValueChangeService]
+    providers: [BookmarkService]
 })
 
 export class LabelCopyComponent implements OnInit  {
-    @Input() bookmarkCode: string;
-
+    bookmarkText: string;
     copyClass: string;
 
-    constructor(private _bookmarkOptionValueChangeService: BookmarkOptionValueChangeService) {
-        console.log("constructor");
-    };
+    constructor(
+        private _bookmarkOptionValueChangeService: BookmarkOptionValueChangeService,
+        private _bookmarkService: BookmarkService
+        ) { };
 
     ngOnInit() {
-        console.log("in init");
         this._bookmarkOptionValueChangeService.bookmarkOptionValueChanged$.subscribe(optionValue => this.onBookmarkOptionValueChanged(optionValue));
-
     };
 
 
 
     onBookmarkOptionValueChanged(optionValue: BookmarkOptionValue) {
-        console.log("in onBookmarkOptionValueChanged");
-        console.log(optionValue.bookmarkCode);
 
+        //call service to determine bookmarkText
+        this.bookmarkText = this._bookmarkService.getBookmarkText(optionValue);
     }
 
 

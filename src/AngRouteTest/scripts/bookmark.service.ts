@@ -3,6 +3,8 @@ import {Http, Response} from 'angular2/http';
 import {Observable}     from 'rxjs/Observable';
 import {BookmarkContext}     from './bookmark-context';
 import {Bookmark} from './bookmark';
+import {BookmarkOptionValue} from './bookmark-option-value';
+
 import {CONTEXTS, BOOKMARKS}     from './bookmark.service.mock';
 
 @Injectable() //don't forget parens
@@ -55,6 +57,11 @@ export class BookmarkService {
         return Observable.throw(error.json().error || 'Server error');
     }
 
+
+    getBookmarkText(bookmarkValue: BookmarkOptionValue):string {
+        let output: string = "ActionFee_OPT_TYPE:SHOWTOTAL";
+        return output;
+    }
 
 
 }

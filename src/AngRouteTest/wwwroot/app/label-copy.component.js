@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', './bookmark-option-value-change.service'], function(exports_1) {
+System.register(['angular2/core', 'angular2/common', './bookmark-option-value-change.service', './bookmark.service'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/common', './bookmark-option-value-ch
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, common_1, bookmark_option_value_change_service_1;
+    var core_1, common_1, bookmark_option_value_change_service_1, bookmark_service_1;
     var LabelCopyComponent;
     return {
         setters:[
@@ -20,23 +20,25 @@ System.register(['angular2/core', 'angular2/common', './bookmark-option-value-ch
             },
             function (bookmark_option_value_change_service_1_1) {
                 bookmark_option_value_change_service_1 = bookmark_option_value_change_service_1_1;
+            },
+            function (bookmark_service_1_1) {
+                bookmark_service_1 = bookmark_service_1_1;
             }],
         execute: function() {
             LabelCopyComponent = (function () {
-                function LabelCopyComponent(_bookmarkOptionValueChangeService) {
+                function LabelCopyComponent(_bookmarkOptionValueChangeService, _bookmarkService) {
                     this._bookmarkOptionValueChangeService = _bookmarkOptionValueChangeService;
-                    console.log("constructor");
+                    this._bookmarkService = _bookmarkService;
                 }
                 ;
                 LabelCopyComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    console.log("in init");
                     this._bookmarkOptionValueChangeService.bookmarkOptionValueChanged$.subscribe(function (optionValue) { return _this.onBookmarkOptionValueChanged(optionValue); });
                 };
                 ;
                 LabelCopyComponent.prototype.onBookmarkOptionValueChanged = function (optionValue) {
-                    console.log("in onBookmarkOptionValueChanged");
-                    console.log(optionValue.bookmarkCode);
+                    //call service to determine bookmarkText
+                    this.bookmarkText = this._bookmarkService.getBookmarkText(optionValue);
                 };
                 LabelCopyComponent.prototype.doCopy = function () {
                     var _this = this;
@@ -52,18 +54,14 @@ System.register(['angular2/core', 'angular2/common', './bookmark-option-value-ch
                     //wait one second then change the class back to empty.
                     setTimeout(function () { return _this.copyClass = ""; }, 1000);
                 };
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', String)
-                ], LabelCopyComponent.prototype, "bookmarkCode", void 0);
                 LabelCopyComponent = __decorate([
                     core_1.Component({
                         selector: 'label-copy',
-                        template: "\n    <div>\n        <label class=\"copy-label\">{{bookmarkCode}}</label>\n        <button (click)=\"doCopy()\" [ngClass]=\"copyClass\">Copy</button>\n    </div>\n  ",
+                        template: "\n    <div>\n        <label class=\"copy-label\">{{bookmarkText}}</label>\n        <button (click)=\"doCopy()\" [ngClass]=\"copyClass\">Copy</button>\n    </div>\n  ",
                         directives: [common_1.NgClass],
-                        providers: [bookmark_option_value_change_service_1.BookmarkOptionValueChangeService]
+                        providers: [bookmark_service_1.BookmarkService]
                     }), 
-                    __metadata('design:paramtypes', [bookmark_option_value_change_service_1.BookmarkOptionValueChangeService])
+                    __metadata('design:paramtypes', [bookmark_option_value_change_service_1.BookmarkOptionValueChangeService, bookmark_service_1.BookmarkService])
                 ], LabelCopyComponent);
                 return LabelCopyComponent;
             })();

@@ -46,7 +46,6 @@ System.register(['angular2/core', 'angular2/router', './label-copy.component', '
                     _bookmarkOptionValue.bookmarkCode = this.bookmarkCode;
                     //TODO add options
                     this._bookmarkChangeService.bookmarkOptionValueChangeBroadcast(_bookmarkOptionValue);
-                    console.log("end doTest");
                 };
                 BookmarkOptionComponent = __decorate([
                     core_1.Component({
