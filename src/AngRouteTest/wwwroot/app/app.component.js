@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './home.component', './search.component', './bookmark-option.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './home.component', './search-home.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', './home.component', './sear
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, home_component_1, search_component_1, bookmark_option_component_1;
+    var core_1, router_1, home_component_1, search_home_component_1;
     var AppComponent;
     return {
         setters:[
@@ -21,27 +21,25 @@ System.register(['angular2/core', 'angular2/router', './home.component', './sear
             function (home_component_1_1) {
                 home_component_1 = home_component_1_1;
             },
-            function (search_component_1_1) {
-                search_component_1 = search_component_1_1;
-            },
-            function (bookmark_option_component_1_1) {
-                bookmark_option_component_1 = bookmark_option_component_1_1;
+            function (search_home_component_1_1) {
+                search_home_component_1 = search_home_component_1_1;
             }],
         execute: function() {
+            //import {SearchComponent} from './search.component';
+            //import {BookmarkOptionComponent} from './bookmark-option.component';
             AppComponent = (function () {
                 function AppComponent() {
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <nav>\n      <a [routerLink]=\"['Home']\">Home</a>\n      <a [routerLink]=\"['Search']\">Search</a>\n      <a [routerLink]=\"['Option']\">Bookmark Option</a>\n    </nav>\n    <router-outlet></router-outlet>\n  ",
+                        template: "\n    <nav>\n      <a [routerLink]=\"['Home']\">Home</a>\n      <a [routerLink]=\"['Search']\">Search</a>\n      <!--<a [routerLink]=\"['Option']\">Bookmark Option</a>-->\n    </nav>\n    <router-outlet></router-outlet>\n  ",
                         //providers: [DialogService, HeroService],
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
-                        { path: '/search', name: 'Search', component: search_component_1.SearchComponent },
-                        { path: '/detail', name: 'Option', component: bookmark_option_component_1.BookmarkOptionComponent }
+                        { path: '/search/...', name: 'Search', component: search_home_component_1.SearchHomeComponent } //,
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

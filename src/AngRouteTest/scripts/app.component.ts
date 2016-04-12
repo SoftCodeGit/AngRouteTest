@@ -2,8 +2,9 @@
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {HomeComponent} from './home.component';
-import {SearchComponent} from './search.component';
-import {BookmarkOptionComponent} from './bookmark-option.component';
+import {SearchHomeComponent} from './search-home.component';
+//import {SearchComponent} from './search.component';
+//import {BookmarkOptionComponent} from './bookmark-option.component';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {BookmarkOptionComponent} from './bookmark-option.component';
     <nav>
       <a [routerLink]="['Home']">Home</a>
       <a [routerLink]="['Search']">Search</a>
-      <a [routerLink]="['Option']">Bookmark Option</a>
+      <!--<a [routerLink]="['Option']">Bookmark Option</a>-->
     </nav>
     <router-outlet></router-outlet>
   `,
@@ -21,7 +22,7 @@ import {BookmarkOptionComponent} from './bookmark-option.component';
 })
 @RouteConfig([
     { path: '/home', name: 'Home', component: HomeComponent, useAsDefault:true },
-    { path: '/search', name: 'Search', component: SearchComponent },
-    { path: '/detail', name: 'Option', component: BookmarkOptionComponent }
+    { path: '/search/...', name: 'Search', component: SearchHomeComponent }//,
+    //{ path: '/detail', name: 'Option', component: BookmarkOptionComponent }
 ])
 export class AppComponent { }

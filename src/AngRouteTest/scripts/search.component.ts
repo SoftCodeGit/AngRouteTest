@@ -1,9 +1,12 @@
 ﻿import {Component, OnInit}   from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
+import {Router} from 'angular2/router';
 
 import {BookmarkService} from './bookmark.service';
 import {BookmarkContext} from './bookmark-context';
 import {Bookmark} from './bookmark';
+import {BookmarkOptionComponent} from './bookmark-option.component';
+
+
 import {DropDownComponent} from './dropdown.component';
 import {Grid} from './grid/grid';
 import {Column} from './grid/column';
@@ -30,17 +33,19 @@ import {Column} from './grid/column';
     </p>
     <div>{{errormessage}}</div>
     <grid name="person grid" [rows]="bookmarks" [columns]="columns" (rowClicked)="getRowClicked($event)" (viewClicked)="getViewClicked($event)"></grid>
+     <router-outlet></router-outlet>
   `,
     directives: [DropDownComponent, Grid],
     providers: [BookmarkService]
 })
 
 
+
 export class SearchComponent implements OnInit {
     //people: Array<Person>;
     columns: Array<Column>;
 
-    constructor(private _bookmarkService: BookmarkService) {
+    constructor(private _bookmarkService: BookmarkService, private _router: Router) {
 
         //this.people = this.getPeople();
         this.columns = this.getColumns();
@@ -70,8 +75,8 @@ export class SearchComponent implements OnInit {
     }
 
     search() {
-        console.log("search item:" + this.selectedBookmarkContext);
-        console.log("search criteria:" + this.searchCriteria);
+        //console.log("search item:" + this.selectedBookmarkContext);
+        //console.log("search criteria:" + this.searchCriteria);
 
         this.bookmarks = this._bookmarkService.getBookmarksMock(this.selectedBookmarkContext, this.searchCriteria);
         
@@ -81,7 +86,7 @@ export class SearchComponent implements OnInit {
         //    context => this.bookmarks = context,
         //    error => this.errormessage = <any>error);
 
-        console.log(this.bookmarks);
+        //console.log(this.bookmarks);
     }
 
     getRowClicked(row:Bookmark) {
@@ -94,6 +99,7 @@ export class SearchComponent implements OnInit {
         //console.log("In search");
         console.log(row);
         this.selectedBookmark = row.BookmarkCode;
+        this._router.navigate(['Option', { id: row.BookmarkCode }]);
     }
 
     //getPeople(): Array<Person> {

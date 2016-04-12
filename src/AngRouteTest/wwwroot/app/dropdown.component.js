@@ -34,7 +34,7 @@ System.register(['angular2/core'], function(exports_1) {
                 DropDownComponent = __decorate([
                     core_1.Component({
                         selector: 'my-dropdown',
-                        template: "\n    <select  [(ngModel)]=\"selectedItem\"  (change)=\"onSelect($event.target.value)\">\n      <option *ngFor=\"#context of contexts\" [value]=\"context.ReportContextCode\">{{context.ReportContextDesc}}</option>\n    </select>\n    "
+                        template: "\n    <select  [ngModel]=\"selectedItem\"  (change)=\"onSelect($event.target.value)\">\n      <option *ngFor=\"#context of contexts\" [value]=\"context.ReportContextCode\">{{context.ReportContextDesc}}</option>\n    </select>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], DropDownComponent);
