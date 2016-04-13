@@ -70,9 +70,14 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', './bookmar
                                 var item = bookmarkValue.formValues[n];
                                 //make sure value is populated
                                 if (item.value && item.value.length > 0) {
-                                    if (optionalText.length > 0)
-                                        optionalText += "~";
-                                    optionalText += item.key + ":" + item.value;
+                                    if (item.key.toUpperCase() == "NUMOPTION") {
+                                        numOption = item.value;
+                                    }
+                                    else {
+                                        if (optionalText.length > 0)
+                                            optionalText += "~";
+                                        optionalText += item.key + ":" + item.value;
+                                    }
                                 }
                             }
                             if (numOption.length > 0)

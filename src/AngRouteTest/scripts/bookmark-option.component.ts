@@ -55,6 +55,7 @@ export class BookmarkOptionComponent implements OnInit {
         _bookmarkOptionValue.formValues.push({ key: "IB", value: "P" });
         _bookmarkOptionValue.formValues.push({ key: "STATISTICAL", value: "" });
         _bookmarkOptionValue.formValues.push({ key: "TYPE", value: "DEBTORBALANCE" });
+        _bookmarkOptionValue.formValues.push({ key: "NUMOPTION", value: "6" });
         _bookmarkOptionValue.formValues.push({ key: "SHOWTOTAL", value: "true" });
         _bookmarkOptionValue.formValues.push({ key: "OUTPUT", value: null });
 
