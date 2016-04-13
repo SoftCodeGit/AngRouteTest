@@ -36,6 +36,8 @@ export class LabelCopyComponent implements OnInit  {
     onBookmarkOptionValueChanged(optionValue: BookmarkOptionValue) {
 
         //call service to determine bookmarkText
+        console.log("onBookmarkOptionValueChanged");
+        console.log(optionValue);
         this.bookmarkText = this._bookmarkService.getBookmarkText(optionValue);
     }
 

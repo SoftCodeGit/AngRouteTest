@@ -22,7 +22,6 @@ System.register(['angular2/core'], function(exports_1) {
                 }
                 BookmarkOptionValueChangeService.prototype.bookmarkOptionValueChangeBroadcast = function (value) {
                     console.log("bookmarkOptionValueChangeBroadcast");
-                    console.log(value);
                     this.bookmarkOptionValueChanged$.emit(value);
                 };
                 BookmarkOptionValueChangeService = __decorate([

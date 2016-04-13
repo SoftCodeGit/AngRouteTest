@@ -38,6 +38,8 @@ System.register(['angular2/core', 'angular2/common', './bookmark-option-value-ch
                 ;
                 LabelCopyComponent.prototype.onBookmarkOptionValueChanged = function (optionValue) {
                     //call service to determine bookmarkText
+                    console.log("onBookmarkOptionValueChanged");
+                    console.log(optionValue);
                     this.bookmarkText = this._bookmarkService.getBookmarkText(optionValue);
                 };
                 LabelCopyComponent.prototype.doCopy = function () {

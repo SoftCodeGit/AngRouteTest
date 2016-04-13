@@ -4,6 +4,7 @@ import {Observable}     from 'rxjs/Observable';
 import {BookmarkContext}     from './bookmark-context';
 import {Bookmark} from './bookmark';
 import {BookmarkOptionValue} from './bookmark-option-value';
+import {BookmarkOptionValuePair} from './bookmark-option-value';
 
 import {CONTEXTS, BOOKMARKS}     from './bookmark.service.mock';
 
@@ -59,7 +60,42 @@ export class BookmarkService {
 
 
     getBookmarkText(bookmarkValue: BookmarkOptionValue):string {
-        let output: string = "ActionFee_OPT_TYPE:SHOWTOTAL";
+        let output: string = "";
+
+        if (bookmarkValue && bookmarkValue.bookmarkCode) {
+            output = "<" + bookmarkValue.bookmarkCode;
+            
+            //build syntax based optional form values 
+            if (bookmarkValue.formValues) {
+
+                let optionalText: string = "";
+                let numOption: string = "";
+
+                for (var n = 0; n < bookmarkValue.formValues.length; n++) {
+
+                    let item: BookmarkOptionValuePair = bookmarkValue.formValues[n];
+
+                    //make sure value is populated
+                    if (item.value && item.value.length > 0) {
+                        if (optionalText.length > 0)
+                            optionalText += "~";
+
+                        optionalText += item.key + ":" + item.value;
+                        //console.log(item);
+                    }                
+                } 
+
+                if (numOption.length > 0)
+                    output += "_NUM:" + numOption;
+
+                if (optionalText.length > 0)
+                    output += "_OPT_" + optionalText;
+            }
+
+            output += ">";
+        }
+
+
         return output;
     }
 

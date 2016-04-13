@@ -44,7 +44,15 @@ System.register(['angular2/core', 'angular2/router', './label-copy.component', '
                 BookmarkOptionComponent.prototype.doTest = function () {
                     var _bookmarkOptionValue = new bookmark_option_value_1.BookmarkOptionValue();
                     _bookmarkOptionValue.bookmarkCode = this.bookmarkCode;
-                    //TODO add options
+                    // "{"IB":"P","STATISTICAL":true,"TYPE":"DEBTORBALANCE","SHOWTOTAL":true,"JUDGMENTFEE":true,"OUTPUT":"TEXT","FEE":"100"};
+                    //var item = { key: "IB", value: "P" };
+                    //_bookmarkOptionValue.formValues = [];
+                    //_bookmarkOptionValue.formValues.push(item);
+                    _bookmarkOptionValue.formValues.push({ key: "IB", value: "P" });
+                    _bookmarkOptionValue.formValues.push({ key: "STATISTICAL", value: "" });
+                    _bookmarkOptionValue.formValues.push({ key: "TYPE", value: "DEBTORBALANCE" });
+                    _bookmarkOptionValue.formValues.push({ key: "SHOWTOTAL", value: "true" });
+                    _bookmarkOptionValue.formValues.push({ key: "OUTPUT", value: null });
                     this._bookmarkChangeService.bookmarkOptionValueChangeBroadcast(_bookmarkOptionValue);
                 };
                 BookmarkOptionComponent = __decorate([

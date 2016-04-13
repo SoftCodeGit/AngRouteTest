@@ -59,7 +59,29 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', './bookmar
                     return Observable_1.Observable.throw(error.json().error || 'Server error');
                 };
                 BookmarkService.prototype.getBookmarkText = function (bookmarkValue) {
-                    var output = "ActionFee_OPT_TYPE:SHOWTOTAL";
+                    var output = "";
+                    if (bookmarkValue && bookmarkValue.bookmarkCode) {
+                        output = "<" + bookmarkValue.bookmarkCode;
+                        //build syntax based optional form values 
+                        if (bookmarkValue.formValues) {
+                            var optionalText = "";
+                            var numOption = "";
+                            for (var n = 0; n < bookmarkValue.formValues.length; n++) {
+                                var item = bookmarkValue.formValues[n];
+                                //make sure value is populated
+                                if (item.value && item.value.length > 0) {
+                                    if (optionalText.length > 0)
+                                        optionalText += "~";
+                                    optionalText += item.key + ":" + item.value;
+                                }
+                            }
+                            if (numOption.length > 0)
+                                output += "_NUM:" + numOption;
+                            if (optionalText.length > 0)
+                                output += "_OPT_" + optionalText;
+                        }
+                        output += ">";
+                    }
                     return output;
                 };
                 BookmarkService = __decorate([

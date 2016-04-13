@@ -7,7 +7,6 @@ export class BookmarkOptionValueChangeService {
 
     bookmarkOptionValueChangeBroadcast(value: IBookmarkOptionValue): void {
         console.log("bookmarkOptionValueChangeBroadcast");
-        console.log(value);
         this.bookmarkOptionValueChanged$.emit(value);
     }
 }
